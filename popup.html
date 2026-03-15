@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>LocalStorage Saver</title>
+    <link rel="stylesheet" href="popup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="icon">💾</span> LS Manager</h1>
+            <p class="subtitle">Guarda y restaura el estado local</p>
+        </header>
+
+        <section class="tabs">
+            <button class="tab-btn active" data-tab="current">Claves Actuales</button>
+            <button class="tab-btn" data-tab="saved">Estados Guardados</button>
+        </section>
+
+        <section id="tab-current" class="tab-content active">
+            <div class="actions-bar">
+                <input type="text" id="state-name" placeholder="Nombre (ej. Estado 1)">
+                <button id="save-selected-btn" class="btn primary" disabled>Guardar</button>
+            </div>
+            <div class="list-header">
+                <label>
+                    <input type="checkbox" id="select-all">
+                    <span>Seleccionar todas</span>
+                </label>
+                <button id="refresh-btn" class="btn icon-btn" title="Refrescar LocalStorage">🔄</button>
+            </div>
+            <ul id="current-keys-list" class="keys-list">
+                <li class="empty-state">
+                    <div class="loader"></div>
+                    Buscando claves...
+                </li>
+            </ul>
+        </section>
+
+        <section id="tab-saved" class="tab-content">
+            <ul id="saved-states-list" class="states-list">
+                <li class="empty-state">No hay estados guardados aún.</li>
+            </ul>
+        </section>
+    </div>
+    
+    <!-- Template para la alerta de feedback (toast) -->
+    <div id="toast" class="toast hidden"></div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

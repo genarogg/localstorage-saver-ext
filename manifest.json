@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "LocalStorage Saver",
+  "version": "1.0.0",
+  "description": "Guarda y restaura estados de localStorage de diferentes sitios web.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Gestionar LocalStorage"
+  }
+}
