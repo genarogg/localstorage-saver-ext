@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentKeysList = document.getElementById('current-keys-list');
     const savedStatesList = document.getElementById('saved-states-list');
     const toastEl = document.getElementById('toast');
+    const deleteAllBtn = document.getElementById('delete-all-btn');
+    const savedHeader = document.getElementById('saved-header');
     
     let currentHost = '';
     let currentLocalStorage = {};
@@ -197,9 +199,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (hostStates.length === 0) {
             savedStatesList.innerHTML = `<li class="empty-state"><div class="empty-state-icon">📂</div>No hay estados guardados para ${host || 'este sitio'}.</li>`;
+            if (savedHeader) savedHeader.style.display = 'none';
             return;
         }
 
+        if (savedHeader) savedHeader.style.display = 'flex';
         hostStates.sort((a, b) => b.id - a.id);
 
         savedStatesList.innerHTML = '';
@@ -276,4 +280,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Init
     loadCurrentKeys();
+    
+    if (deleteAllBtn) {
+        deleteAllBtn.addEventListener('click', async () => {
+            let host = currentHost;
+            if (!host) {
+                const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+                if (tab && !tab.url.startsWith('chrome://')) {
+                    host = new URL(tab.url).hostname;
+                }
+            }
+            
+            if (!confirm(`¿Estás seguro de que quieres eliminar todos los estados de ${host}?`)) return;
+            
+            const { savedStates = [] } = await chrome.storage.local.get('savedStates');
+            const newStates = savedStates.filter(s => s.host !== host);
+            await chrome.storage.local.set({ savedStates: newStates });
+            
+            loadSavedStates();
+            showToast('Todos los estados eliminados');
+        });
+    }
 });

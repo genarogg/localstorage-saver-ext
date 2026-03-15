@@ -13,7 +13,7 @@
     "https://*/*"
   ],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "index.html",
     "default_title": "Gestionar LocalStorage"
   }
 }
