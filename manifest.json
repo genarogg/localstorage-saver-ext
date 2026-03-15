@@ -12,7 +12,14 @@
     "http://*/*",
     "https://*/*"
   ],
+  "icons": {
+    "16": "img/icon.png",
+    "32": "img/icon.png",
+    "48": "img/icon.png",
+    "128": "img/icon.png"
+  },
   "action": {
+    "default_icon": "img/icon.png",
     "default_popup": "index.html",
     "default_title": "Gestionar LocalStorage"
   }
