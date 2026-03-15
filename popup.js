@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadCurrentKeys() {
         const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
         if (!tab || tab.url.startsWith('chrome://')) {
-            currentKeysList.innerHTML = '<li class="empty-state">No disponible en esta página.</li>';
+            currentKeysList.innerHTML = '<li class="empty-state"><div class="empty-state-icon">🌐</div>No disponible en esta página.</li>';
             return;
         }
 
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const keys = Object.keys(currentLocalStorage);
         
         if (keys.length === 0) {
-            currentKeysList.innerHTML = '<li class="empty-state">El localStorage está vacío.</li>';
+            currentKeysList.innerHTML = '<li class="empty-state"><div class="empty-state-icon">📭</div>El localStorage está vacío.</li>';
             updateSaveButton();
             return;
         }
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const hostStates = savedStates.filter(s => s.host === host);
 
         if (hostStates.length === 0) {
-            savedStatesList.innerHTML = `<li class="empty-state">No hay estados guardados para ${host || 'este sitio'}.</li>`;
+            savedStatesList.innerHTML = `<li class="empty-state"><div class="empty-state-icon">📂</div>No hay estados guardados para ${host || 'este sitio'}.</li>`;
             return;
         }
 
@@ -211,13 +211,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="state-content">
                     <div class="state-name">${escapeHtml(state.name)}</div>
                     <div class="state-meta">
-                        <span>🏷️ ${state.keysCount} variables</span>
-                        <span>📅 ${escapeHtml(state.date)}</span>
+                        <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> ${state.keysCount} var</span>
+                        <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> ${escapeHtml(state.date)}</span>
                     </div>
                 </div>
                 <div class="state-actions">
                     <button class="btn success action-restore" data-id="${state.id}" title="Restaurar a la página">Aplicar</button>
-                    <button class="btn danger action-delete icon-btn" data-id="${state.id}" title="Eliminar">🗑️</button>
+                    <button class="btn danger action-delete icon-btn" data-id="${state.id}" title="Eliminar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
                 </div>
             `;
             savedStatesList.appendChild(li);
