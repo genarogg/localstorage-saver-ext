@@ -16,6 +16,7 @@
         <section class="tabs">
             <button class="tab-btn active" data-tab="current">Claves Actuales</button>
             <button class="tab-btn" data-tab="saved">Estados Guardados</button>
+            <button class="tab-btn" data-tab="settings">Ajustes</button>
         </section>
 
         <section id="tab-current" class="tab-content active">
@@ -48,6 +49,26 @@
             <ul id="saved-states-list" class="states-list">
                 <li class="empty-state">No hay estados guardados aún.</li>
             </ul>
+        </section>
+
+        <section id="tab-settings" class="tab-content">
+            <div class="settings-container">
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="enable-selector" class="setting-checkbox">
+                        <span>Mostrar selector en la página</span>
+                    </label>
+                    <p class="setting-description">Inyecta un dropdown en la esquina inferior derecha para cambiar rápidamente entre estados guardados</p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="auto-reload" class="setting-checkbox">
+                        <span>Recargar página al restaurar estado</span>
+                    </label>
+                    <p class="setting-description">Recarga automáticamente la página después de restaurar un estado guardado</p>
+                </div>
+            </div>
         </section>
     </div>
     

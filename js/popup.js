@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteAllBtn = document.getElementById('delete-all-btn');
     const savedHeader = document.getElementById('saved-header');
     
+    const enableSelectorCb = document.getElementById('enable-selector');
+    const autoReloadCb = document.getElementById('auto-reload');
+    
     let currentHost = '';
     let currentLocalStorage = {};
 
@@ -293,4 +296,33 @@ document.addEventListener('DOMContentLoaded', () => {
             showToast('Todos los estados eliminados');
         });
     }
+    
+    // Settings
+    async function loadSettings() {
+        const { settings = {} } = await chrome.storage.local.get('settings');
+        const defaultSettings = {
+            enableSelector: true,
+            autoReload: false
+        };
+        
+        const finalSettings = { ...defaultSettings, ...settings };
+        enableSelectorCb.checked = finalSettings.enableSelector;
+        autoReloadCb.checked = finalSettings.autoReload;
+    }
+    
+    async function saveSettings() {
+        const settings = {
+            enableSelector: enableSelectorCb.checked,
+            autoReload: autoReloadCb.checked
+        };
+        
+        await chrome.storage.local.set({ settings });
+        showToast('Ajustes guardados');
+    }
+    
+    enableSelectorCb.addEventListener('change', saveSettings);
+    autoReloadCb.addEventListener('change', saveSettings);
+    
+    // Load settings on startup
+    loadSettings();
 });
