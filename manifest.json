@@ -12,6 +12,13 @@
     "http://*/*",
     "https://*/*"
   ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["js/content.js"],
+      "run_at": "document_end"
+    }
+  ],
   "icons": {
     "16": "img/icon.png",
     "32": "img/icon.png",
