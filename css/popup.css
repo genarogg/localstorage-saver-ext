@@ -135,7 +135,7 @@ header h1 .icon {
     display: none;
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    padding: 12px 16px;
 }
 
 .tab-content.active {
@@ -151,8 +151,8 @@ header h1 .icon {
 
 .actions-bar {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 12px;
 }
 
 input[type="text"] {
@@ -297,10 +297,10 @@ input[type="checkbox"]:hover:not(:checked) {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
     border-bottom: 1px solid var(--border-color);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
 }
 
@@ -321,17 +321,17 @@ input[type="checkbox"]:hover:not(:checked) {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 6px;
 }
 
 .key-item, .state-item {
     background: var(--surface-color);
     border: 1px solid var(--border-color);
-    padding: 14px;
+    padding: 8px 12px;
     border-radius: var(--radius);
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 10px;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
@@ -371,9 +371,9 @@ input[type="checkbox"]:hover:not(:checked) {
 }
 
 .key-name, .state-name {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    margin-bottom: 6px;
+    margin-bottom: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -382,20 +382,21 @@ input[type="checkbox"]:hover:not(:checked) {
 }
 
 .state-meta {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
     display: flex;
-    gap: 12px;
+    gap: 8px;
     align-items: center;
+    margin-top: 4px;
 }
 
 .state-meta span {
     display: flex;
     align-items: center;
-    gap: 4px;
-    background: rgba(255,255,255,0.05);
-    padding: 2px 8px;
-    border-radius: 12px;
+    gap: 3px;
+    background: rgba(255,255,255,0.03);
+    padding: 2px 6px;
+    border-radius: 10px;
 }
 
 .key-value {
@@ -433,8 +434,20 @@ input[type="checkbox"]:hover:not(:checked) {
 
 .state-actions {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     transition: opacity 0.2s;
+}
+
+.action-restore {
+    color: var(--success-color);
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.action-restore:hover {
+    background: rgba(16, 185, 129, 0.2);
+    border-color: rgba(16, 185, 129, 0.3);
+    transform: scale(1.1);
 }
 
 /* Scrollbar */

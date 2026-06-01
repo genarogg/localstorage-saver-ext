@@ -86,15 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
         keys.forEach(key => {
             const li = document.createElement('li');
             li.className = 'key-item';
-            
-            const value = currentLocalStorage[key] || '';
-            const displayValue = value.length > 50 ? value.substring(0, 50) + '...' : value;
 
             li.innerHTML = `
                 <input type="checkbox" class="key-checkbox" value="${escapeHtml(key)}">
                 <div class="key-content">
                     <div class="key-name">${escapeHtml(key)}</div>
-                    <div class="key-value" title="${escapeHtml(value)}">${escapeHtml(displayValue)}</div>
                 </div>
             `;
             currentKeysList.appendChild(li);
@@ -214,13 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
             li.innerHTML = `
                 <div class="state-content">
                     <div class="state-name">${escapeHtml(state.name)}</div>
-                    <div class="state-meta">
-                        <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> ${state.keysCount} var</span>
-                        <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> ${escapeHtml(state.date)}</span>
-                    </div>
                 </div>
                 <div class="state-actions">
-                    <button class="btn success action-restore" data-id="${state.id}" title="Restaurar a la página">Aplicar</button>
+                    <button class="btn icon-btn action-restore" data-id="${state.id}" title="Restaurar a la página"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
                     <button class="btn danger action-delete icon-btn" data-id="${state.id}" title="Eliminar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
                 </div>
             `;
